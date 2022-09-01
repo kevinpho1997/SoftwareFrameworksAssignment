@@ -41,29 +41,87 @@ Permissions is an array of permission objects. Each permission object contains a
 ```
 
 ## REST API
+
+**For the  following routes, the parameters and return values are as stated in previously in the "data structures" section, unless explicitly stated**
+
 ### Auth route
 | **Route overview** | This route checks if a user exists in a predefined JSON. If the user exists, it will call a login function to log the user in; returning an error if they do not.                                            |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Route path**     | /auth                                                                                                                                                                                                        |
 | **Method**         | POST                                                                                                                                                                                                         |
-| **Parameter/s**    | `username`:string                                                                                                                                                                                            |
+| **Parameter/s**    | `username`                                                                                                                                                                                            |
 | **Return value/s** | if (auth): `{valid: true, user: {username, email, id, role}}`     if !(auth): `{valid: false, errors:{}}`                                                                                                    |
 | **Description**    | This route takes a `username` in the http request. If there is a match in the users.json file then the route returns `valid: true` and the user information. If there is no match, valid: false is returned. |
 
-Set permissions route
+### Set permissions route
 | **Route overview** | This route gives app permissions to a user depending on the value of user.role                                                                                           |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Route path**     | /setPermissions                                                                                                                                                          |
 | **Method**         | POST                                                                                                                                                                     |
 | **Parameter/s**    | `user: {username, email, id, role}`                                                                                                                                      |
-| **Return value/s** |                                                                                                                                                               |
+| **Return value/s** | ***See below code block for proper formatting                                                                                                                                       |
 | **Description**    | This route takes a `user` and returns the `permissions` object where default users have no permissions. Relevant permissions are returned according to the user `roles`. |
 
-| **Route overview** | This route gives app permissions to a user depending on the value of user.role                                                                                                                                                                                                                                                                                                                                                                                   |
-|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Route path**     | /setPermissions                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **Method**         | POST                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **Parameter/s**    | `user: {username, email, id, role}`                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **Return value/s** | ``` { 	rolePermissions: { 		// super admin 		createUser: boolean, 		removeUser: boolean, 		upgradeUserPerm: boolean, 		// group admin 		createGroup: boolean, 		createChannel: boolean, 		createUserInChannel: boolean, 		inviteUserToChannel: boolean, 		deleteGroup: boolean, 		deleteChannel: boolean, 		removeUserFromChannel: boolean, 		upgradeToGroupAssist: boolean, 		// group assist 		addUserToChannel: boolean, 		removeUserToChannel: boolean, 		createChannelInGroup: boolean 	} } ``` |
-| **Description**    | This route takes a `user` and returns the `permissions` object where default users have no permissions. Relevant permissions are returned according to the user `roles`.                                                                                                                                                                                                                                                                                         |
 
+```
+{
+
+	rolePermissions: {
+
+		// super admin
+
+		createUser: boolean,
+
+		removeUser: boolean,
+
+		upgradeUserPerm: boolean,
+
+		// group admin
+
+		createGroup: boolean,
+
+		createChannel: boolean,
+
+		createUserInChannel: boolean,
+
+		inviteUserToChannel: boolean,
+
+		deleteGroup: boolean,
+
+		deleteChannel: boolean,
+
+		removeUserFromChannel: boolean,
+
+		upgradeToGroupAssist: boolean,
+
+		// group assist
+
+		addUserToChannel: boolean,
+
+		removeUserToChannel: boolean,
+
+		createChannelInGroup: boolean
+
+	}
+
+}
+
+```
+
+### Create User
+| **Route overview** | Creates a new user if the username doesn't exist                                                                                                                                  |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /user/create                                                                                                                                                                      |
+| **Method**         | POST                                                                                                                                                                              |
+| **Parameter/s**    | `{user: {username, email, id: undefined, role}}`                                                                                                                                  |
+| **Return value/s** | No user match: `users` user match: `error`                                                                                                                                        |
+| **Description**    | The route reads `users.json`, and if there is no `user` match then it will add the `user` to `users` and assign a `userId`. It writes `users` to `users.json` and returns `users` |
+
+### Update User
+| **Route overview** | Updates a User                                                                                                                                                                                                   |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /user/:id                                                                                                                                                                                                        |
+| **Method**         | POST                                                                                                                                                                                                             |
+| **Parameter/s**    | Request parameters: `id`<br/> Request body: `{user: {username, email, id, role}}`                                                                                                                                |
+| **Return value/s** | `users`                                                                                                                                                                                                          |
+| **Description**    | A `userID` and a `user` object is received and `users.json` is read. It matches the `userID` and `id` of the `user` object and replaces the values with `user`. `users` is written to users.json and the route responds with this return value. |
