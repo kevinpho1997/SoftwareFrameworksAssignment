@@ -5,11 +5,19 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './profile/profile.component';
+import { GroupComponent } from './group/group.component';
+import { ChannelComponent } from './channel/channel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    AccountComponent,
+    ProfileComponent,
+    GroupComponent,
+    ChannelComponent
   ],
   imports: [
     BrowserModule,
