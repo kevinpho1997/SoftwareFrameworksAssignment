@@ -17,5 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public loginClicked(event: any) {}
+  public loginClicked(event: any) {
+    
+  }
 }
