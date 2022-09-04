@@ -9,7 +9,7 @@ const BACKEND_URL = 'http://localhost:3000';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email = '';
+  username = '';
   password = '';
 
   constructor() { }
@@ -17,4 +17,5 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public loginClicked(event: any) {}
 }
