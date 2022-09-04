@@ -16,3 +16,5 @@ const PORT = 3000;
 app.use(cors());
 sockets.connect(io, PORT);
 server.listen(http, PORT);
+
+app.post('/login', require('./routes/postLogin'));

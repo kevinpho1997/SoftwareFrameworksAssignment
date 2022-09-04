@@ -1,0 +1,6 @@
+[
+    {"username": "super", "userid": 1, "userbirthdate": "2022-12-22", "userage": 30},
+    {"username": "kevin", "userid": 2, "userbirthdate": "1997-07-18", "userage": 25},
+    {"username": "yeji", "userid": 3, "userbirthdate": "2022-12-22", "userage": 22},
+    {"username": "super", "userid": 4, "userbirthdate": "2022-12-22", "userage": 24}
+]

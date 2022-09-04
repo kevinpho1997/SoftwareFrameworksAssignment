@@ -17,6 +17,6 @@ export class AuthService {
   }
 
   loginEvent(username: string, password: string) {
-    return this.http.post<User>(this.server + '/api/auth', {username: username, password: password});
+    return this.http.post(this.server + '/login', {username: username, password: password});
   }
 }
