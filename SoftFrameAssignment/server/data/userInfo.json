@@ -1,6 +1,6 @@
 [
-    {"username": "super", "userid": 1, "userbirthdate": "2022-12-22", "userage": 30},
-    {"username": "kevin", "userid": 2, "userbirthdate": "1997-07-18", "userage": 25},
-    {"username": "yeji", "userid": 3, "userbirthdate": "2022-12-22", "userage": 22},
-    {"username": "super", "userid": 4, "userbirthdate": "2022-12-22", "userage": 24}
+    {"username": "super", "userid": 1, "email": "super@email.com", "birthdate": "2021-01-01", "userage": 30, "role": "super"},
+    {"username": "kevin", "userid": 2, "email": "kevin@email.com", "userbirthdate": "1997-07-18", "userage": 25, "role": "gAdmin"},
+    {"username": "yeji", "userid": 3, "email": "yeji@email.com", "userbirthdate": "2000-12-22", "userage": 22, "role": "gAssist"},
+    {"username": "dahyun", "userid": 4, "email": "dahyun@email.com", "userbirthdate": "1998-12-22", "userage": 24, "role": "default"}
 ]
