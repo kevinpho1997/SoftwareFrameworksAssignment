@@ -13,16 +13,19 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
 
-  constructor(private router: Router, private httpClient: HttpClient, private authservice: AuthService) { }
+  constructor(private router: Router, private authservice: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  public loginClicked() {
+  public loginClicked(event: any) {
+    event.preventDefault();
+    console.log(this.username);
     this.authservice.loginEvent(this.username, this.password).subscribe(
       (data: any) => {
         // if (data.valid)
         if (data.valid) {
+          console.log("LOGIN IS VALID");
           localStorage.setItem('username', data.username);
           this.router.navigateByUrl('/chat');
         } else {
