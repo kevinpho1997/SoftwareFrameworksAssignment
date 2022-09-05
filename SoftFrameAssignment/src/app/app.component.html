@@ -6,13 +6,15 @@
         <ul class="nav navbar nav-pills navbar-right">
           <li class="active navInline"><a class="navbar-brand">{{title}}</a></li>
           <li class="active navInline"><a class="nav-link" routerLink="/">Home</a></li>
-          <li class="active navInline"><a class="nav-link" routerLink="/login">Login</a></li>
           <li class="active navInline"><a class="nav-link" routerLink="/chat">Chat</a></li>
           <li class="active navInline"><a class="nav-link" routerLink="/group">Group</a></li>
           <li class="active navInline"><a class="nav-link" routerLink="/channel">Channel</a></li>
         </ul>
       </div>
-      <li class="active navInline"><a class="nav-link" routerLink="/login" (click)="logoutClicked()">Logout</a></li>
+      <ul class="nav navbar nav-pills navbar-right">
+        <li class="active navInline"><a class="nav-link" routerLink="/login">Login</a></li>
+        <li class="active navInline"><a class="nav-link" routerLink="/login" (click)="logoutClicked()">Logout</a></li>
+      </ul>
     </div>
   </nav>
   <div>
