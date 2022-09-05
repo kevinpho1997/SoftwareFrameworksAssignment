@@ -9,6 +9,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+  isLoggedIn = false;
+
   // http login request
   uname: string;
   pword: string;
@@ -23,5 +25,13 @@ export class AuthService {
     console.log("loginEvent()", uname);
     let user = {username: uname, password: pword};
     return this.http.post(this.server + '/login', user, httpOptions);
+  }
+
+  login() {
+    this.isLoggedIn = true;
+  }
+
+  logout() {
+    this.isLoggedIn = false;
   }
 }

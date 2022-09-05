@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
         if (data.valid) {
           console.log("LOGIN IS VALID");
           localStorage.setItem('username', data.username);
+          this.authservice.login();
           this.router.navigateByUrl('/chat');
         } else {
           alert("Login credentials are incorrect");
