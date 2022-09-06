@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 module.exports = function(app) {
-    app.post('/register_user', function(req, res){
+    app.post('/user/create', function(req, res){
         let userInfoObj = {
             username: req.body.username,
             email: req.body.email,

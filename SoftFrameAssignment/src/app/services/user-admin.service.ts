@@ -26,7 +26,7 @@ export class UserAdminService {
   registerUser(username: string, email: string, id: number, birthdate: string, role: string) {
     console.log("registerUser()");
     let user: User = {username, email, id, birthdate, role};
-    return this.http.post<User>(this.server + '/register_user', user, httpOptions);
+    return this.http.post<User>(this.server + '/user/create', user, httpOptions);
   }
   
 }
