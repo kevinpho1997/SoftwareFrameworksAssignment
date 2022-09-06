@@ -31,7 +31,11 @@ export class RegisterComponent implements OnInit {
       this.username, this.email, this.id, this.birthdate, this.role)
         .subscribe(
           (data: any) => {
-            console.log(data);
+            // console.log(data);
+            console.log("data exists", data.exists);
+            // if (data.exists){
+
+            // }
           }
         )
   }
