@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
   role: string;
   // pword: string;
 
+  errormsg = "";
+
   constructor(private router: Router, private uAdminServ: UserAdminService) {
     this.id = 0;
     this.birthdate = "2022-01-01";
@@ -31,8 +33,13 @@ export class RegisterComponent implements OnInit {
       this.username, this.email, this.id, this.birthdate, this.role)
         .subscribe(
           (data: any) => {
+            if (data.valid == true){
+              console.log(data);
+            } else {
+              this.errormsg = "A user with this username already exists"
+            }
             // console.log(data);
-            console.log("data exists", data.exists);
+            // console.log("data exists", data.exists);
             // if (data.exists){
 
             // }

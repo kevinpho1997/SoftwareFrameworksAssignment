@@ -20,10 +20,10 @@ module.exports = function(app) {
             if (err) throw err;
             uArray= JSON.parse(data);
             userIdLength = uArray.length + 1;
-            console.log("uArray", uArray);
-            console.log("userObj", userObj);
-            console.log("userInfoObj", userInfoObj);
-            console.log("uarrayLength", userIdLength);
+            // console.log("uArray", uArray);
+            // console.log("userObj", userObj);
+            // console.log("userInfoObj", userInfoObj);
+            // console.log("uarrayLength", userIdLength);
 
             let i = uArray.findIndex(user => user.username == userInfoObj.username);
             if (i == -1) {
@@ -46,12 +46,17 @@ module.exports = function(app) {
                     });
                 })
                 // for handling if the user exists or not
-                uArray["exists"] = false;
+                // uArray["exists"] = false;
+                let users = uArray[i];
+                users["valid"] = true;
+                res.send(users);
             } else {
                 // res.send(uArray);
-                uArray["exists"] = true;
+                res.send({
+                    "valid": false
+                })
             }
-            res.send(uArray);
+            // res.send(uArray);
         });
     });
 }
