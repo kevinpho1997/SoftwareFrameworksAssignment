@@ -30,7 +30,7 @@ export class UserAdminService {
   }
 
   getAllUsers() {
-    return this.http.get(this.server + '/user', httpOptions);
+    return this.http.get(this.server + '/users', httpOptions);
   }
   
 }

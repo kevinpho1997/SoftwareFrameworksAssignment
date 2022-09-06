@@ -8,19 +8,20 @@ import { UserAdminService } from '../services/user-admin.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  users = [];
-
+  users: any[] = [];
   constructor(private uAdminServ: UserAdminService) { 
     
   }
 
   ngOnInit(): void {
-
+    this.getUsers();
+    // console.log(this.users);
   }
 
   getUsers() {
     this.uAdminServ.getAllUsers().subscribe((data: any) => {
-      this.users = data
+      this.users =data;
+      console.log("this.users:", this.users);
     });
   }
 

@@ -22,3 +22,4 @@ server.listen(http, PORT);
 // app.post('/login', require('./routes/postLogin.js'));
 require('./routes/postLogin.js')(app, path);
 require('./routes/registerUser')(app, path);
+require('./routes/getUsers')(app, path);

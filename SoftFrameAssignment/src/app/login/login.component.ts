@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit {
 
   public loginClicked(event: any) {
     event.preventDefault();
-    console.log(this.username);
+    // console.log(this.username);
     this.authservice.loginEvent(this.username, this.password).subscribe(
       (data: any) => {
         // if (data.valid)
         if (data.valid) {
-          console.log("LOGIN IS VALID");
+          // console.log("LOGIN IS VALID");
           localStorage.setItem('username', data.username);
           // this.authservice.login();
           this.router.navigateByUrl('/chat');
