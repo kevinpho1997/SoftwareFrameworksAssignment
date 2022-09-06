@@ -13,13 +13,13 @@ export class RegisterComponent implements OnInit {
   id: number;
   birthdate: string;
   role: string;
-  pword: string;
+  // pword: string;
 
   constructor(private router: Router, private uAdminServ: UserAdminService) {
     this.id = 0;
     this.birthdate = "2022-01-01";
     this.role = "default";
-    this.pword = "password";
+    // this.pword = "password";
   }
 
   ngOnInit(): void {
