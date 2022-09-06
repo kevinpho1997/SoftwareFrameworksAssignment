@@ -28,6 +28,10 @@ export class UserAdminService {
     let user: User = {username, email, id, birthdate, role};
     return this.http.post<User>(this.server + '/user/create', user, httpOptions);
   }
+
+  getAllUsers() {
+    return this.http.get(this.server + '/user', httpOptions);
+  }
   
 }
 
