@@ -14,13 +14,13 @@ export class AuthService {
   isLoggedIn = false;
 
   // http login request
-  uname: string;
-  pword: string;
+  // uname: string;
+  // pword: string;
   server: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient, private router: Router) { 
-    this.uname = "";
-    this.pword = "";
+    // this.uname = "";
+    // this.pword = "";
   }
 
   loginEvent(uname: string, pword: string) {

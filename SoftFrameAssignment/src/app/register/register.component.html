@@ -1,1 +1,21 @@
-<p>register works!</p>
+<div class="container">
+    <h1>Register a User</h1>
+    <form>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input type="email" id="form2Example1" class="form-control" [(ngModel)]="username" name="username"/>
+          <label class="form-label" for="form2Example1">Username</label>
+          <div id="errormsg" class="errormsg">{{errormsg}}</div>
+        </div>
+      
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input type="email" id="form2Example2" class="form-control" [(ngModel)]="email" name="email"/>
+          <label class="form-label" for="form2Example2">Email</label>
+        </div>
+      
+        <!-- Submit button -->
+        <button type="button" class="btn btn-primary btn-block mb-4" (click)="registerClicked($event)">Register User</button>
+    </form>
+    <router-outlet></router-outlet>
+</div>
