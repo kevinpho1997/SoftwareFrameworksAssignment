@@ -10,7 +10,7 @@ import { UserAdminService } from '../services/user-admin.service';
 export class ChatComponent implements OnInit {
   users: any[] = [];
 
-  constructor(private uAdminServ: UserAdminService) {}
+  constructor(private router: Router, private uAdminServ: UserAdminService) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -29,10 +29,15 @@ export class ChatComponent implements OnInit {
     console.log("deleteClicked()", userId);
     event.preventDefault();
     this.uAdminServ.deleteUser(userId).subscribe((data: any) => {
-      console.log("user deleted");
       // data.toString();
       // this.users = data;
     })
+    console.log("user deleted");
+    // this.router.navigateByUrl('/chat');
+    // redirects to the top URL, and then very quickly back to the intended URL
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/chat']);
+  }); 
   }
 
 }
