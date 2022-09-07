@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
       this.username, this.email, this.id, this.birthdate, this.role)
         .subscribe(
           (data: any) => {
-            console.log("registerClicked", data);
+            // console.log("registerClicked", data);
             if (data) {
               if (data.valid == false) {
                 this.errormsg = "A user with this username already exists"
@@ -41,8 +41,7 @@ export class RegisterComponent implements OnInit {
                 console.log(data);
               }
             }
-           
-            console.log(data);
+            this.router.navigateByUrl('/chat');
             // console.log("data exists", data.exists);
             // if (data.exists){
 
