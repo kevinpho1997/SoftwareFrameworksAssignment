@@ -38,14 +38,11 @@ export class RegisterComponent implements OnInit {
               if (data.valid == false) {
                 this.errormsg = "A user with this username already exists"
               } else {
-                console.log(data);
+                // console.log(data);
+                // doesn't work for some reason
+                this.router.navigateByUrl('/chat');
               }
             }
-            this.router.navigateByUrl('/chat');
-            // console.log("data exists", data.exists);
-            // if (data.exists){
-
-            // }
           }
         )
   }

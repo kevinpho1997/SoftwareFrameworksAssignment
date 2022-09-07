@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { UserAdminService } from '../services/user-admin.service';
 
 @Component({
@@ -29,15 +30,21 @@ export class ChatComponent implements OnInit {
     console.log("deleteClicked()", userId);
     event.preventDefault();
     this.uAdminServ.deleteUser(userId).subscribe((data: any) => {
-      // data.toString();
-      // this.users = data;
+      // redirects to the top URL, and then very quickly back to the intended URL
+      setTimeout(() => {
+        // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        //   this.router.navigate(['/chat']);
+        // }); 
+        this.router.routeReuseStrategy.shouldReuseRoute = function() { return false; };
+        this.router.navigate(['/chat']);
+     }, 500);
+
     })
     console.log("user deleted");
-    // this.router.navigateByUrl('/chat');
-    // redirects to the top URL, and then very quickly back to the intended URL
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/chat']);
-  }); 
+    // this.ngOnInit();
+    this.router.routeReuseStrategy.shouldReuseRoute = function() { return false; };
+    this.router.navigate(['/chat']);
+
   }
 
 }
