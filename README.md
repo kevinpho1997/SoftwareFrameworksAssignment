@@ -132,28 +132,98 @@ Permissions is an array of permission objects. Each permission object contains a
 | **Method**         | POST                                                                                                                                                                                                                                                                                                          |
 | **Parameter/s**    | Request parameters: `userId`                                                                                                                                                                                                                                                                                  |
 | **Return value/s** | `users`                                                                                                                                                                                                                                                                                                       |
-| **Description**    | A `userID` is received and `users.json` and `userInfo.json` is read. It matches the `userID` and `id` and removes the array element with that `userId` from `userInfo.json`. It then matches the `username` from `userInfo.json` and `users.json` and deletes the array element where the username matches.   |
+| **Description**    | A `userID` is received and `users.json` and `userInfo.json` is read. It matches the `userID` and `id` and splices the array element with that `userId` from `userInfo.json`. It then matches the `username` from `userInfo.json` and `users.json` and splices the array element where the username matches.   |
 
 ### Get Users
+| **Route overview** | Gets all users                                                                                                    |
+|--------------------|-------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /users                                                                                                            |
+| **Method**         | POST                                                                                                              |
+| **Parameter/s**    | N/A                                                                                                               |
+| **Return value/s** | `users`                                                                                                           |
+| **Description**    | onInit() of a page that requires a list of users, this function is called, which reads `userInfo.json` and returns the data as a JSON object. |
 
-
-### Get User Channels
+### Get User Channels, Groups and permissions
+| **Route overview** | Gets Channels, Groups and permissions that belongs to the user                                                                                                                                                                                                                                               |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /users/channels                                                                                                                                                                                                                                                                                              |
+| **Method**         | POST                                                                                                                                                                                                                                                                                                         |
+| **Parameter/s**    | `{user: {username, email, id, role}}`                                                                                                                                                                                                                                                                        |
+| **Return value/s** | `userAccess`                                                                                                                                                                                                                                                                                                 |
+| **Description**    | The route receives a user object and reads channels, groups and permissions from the .json/s and initialises `userAccess`. The route matches channels, groups and permissions with a user that has a `userid` matching the input parameter and pushes this data to `userAccess` and responds with this data. |
 
 ### Create Groups
+| **Route overview** | Creates a new group                                                                                                                                                                                                                 |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /group/create                                                                                                                                                                                                                       |
+| **Method**         | POST                                                                                                                                                                                                                                |
+| **Parameter/s**    | `name: string`                                                                                                                                                                                                                      |
+| **Return value/s** | `groupID: number`                                                                                                                                                                                                                   |
+| **Description**    | The route reads `groups.json`, and if there is no `group` match then it will add the `group`'s name to `groups` and assigns a `groupId`. It pushes `group` to the array of groups and writes it back to file. It returns `groupId`. |
 
 ### Delete Group
+| **Route overview** | Deletes a group                                                                                                                                                                                                  |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /group/delete                                                                                                                                                                                                    |
+| **Method**         | POST                                                                                                                                                                                                             |
+| **Parameter/s**    | `groupId: number`                                                                                                                                                                                                |
+| **Return value/s** | N/A                                                                                                                                                                                                              |
+| **Description**    | Uses `groupId` and reads objects in the groups and permissions json files with matching ids. It splices the group from the these read arrays with regards to `groupId`. It then writes these arrays back to file |
 
 ### Add User to Group
 
+| **Route overview** | Adds user to group                                                                                                                                                                                              |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /group/addUser                                                                                                                                                                                                  |
+| **Method**         | POST                                                                                                                                                                                                            |
+| **Parameter/s**    | `userId: number, groupID: number`                                                                                                                                                                               |
+| **Return value/s** | N/A                                                                                                                                                                                                             |
+| **Description**    | Receives a `userId` and `groupId` and finds the index of the permissions json that matches `groupId`. If the userId does not exist, then it pushes the parameters to `permissions` array and writes it to file. |
+
 ### Remove User from Group
+| **Route overview** | Removes User from group                                                                                                                                                                                        |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /group/removeUser                                                                                                                                                                                              |
+| **Method**         | POST                                                                                                                                                                                                           |
+| **Parameter/s**    | `userId: number, groupID: number`                                                                                                                                                                              |
+| **Return value/s** | N/A                                                                                                                                                                                                            |
+| **Description**    | Receives a `userId` and `groupId` and finds the index of the permissions json that matches `groupId`. If the userId exists, then it splices the parameters from the `permissions` array and writes it to file. |
 
 ### Create Channel
+| **Route overview** | Creates a new channel                                                                                                                                                                                                                                                                                                                      |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /channel/create                                                                                                                                                                                                                                                                                                                            |
+| **Method**         | POST                                                                                                                                                                                                                                                                                                                                       |
+| **Parameter/s**    | `{ name: string, groupId }`                                                                                                                                                                                                                                                                                                                |
+| **Return value/s** | `groupID: number`                                                                                                                                                                                                                                                                                                                          |
+| **Description**    | The route reads `groups.json` and `channels.json`, and if there is a matching `group` and no matching channel name then it will create the `channel` with an id of `channels.length`. It pushes input object to the array of `channels` and writes it back to file. It also read/writes the groups and channels with the new channel info. |
 
 ### Delete Channel
+| **Route overview** | Deletes a channel                                                                                                                                                                                                                       |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /channel/delete                                                                                                                                                                                                                         |
+| **Method**         | POST                                                                                                                                                                                                                                    |
+| **Parameter/s**    | `channelId: number`                                                                                                                                                                                                                     |
+| **Return value/s** | N/A                                                                                                                                                                                                                                     |
+| **Description**    | Uses `channelId` and reads objects in the groups, channels and permissions json files with matching `groupIds`. It splices the channel from the these read arrays with regards to `channelId`. It then writes these arrays back to file |
 
 ### Add User to Channel
+| **Route overview** | Adds user to channel                                                                                                                                                                                                                                      |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /channel/addUser                                                                                                                                                                                                                                          |
+| **Method**         | POST                                                                                                                                                                                                                                                      |
+| **Parameter/s**    | `userId: number, groupID: number, channelID: number`                                                                                                                                                                                                      |
+| **Return value/s** | N/A                                                                                                                                                                                                                                                       |
+| **Description**    | Receives a `userId`, `groupId` and `channelID` and finds the index of the permissions json that matches `groupId`. If the userId does not exist, then it pushes an object containing `userId` `channelId[]` to `permissions` array and writes it to file. |
 
 ### Remove User from Channel
+| **Route overview** | Removes user from channel                                                                                                                                                                         |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Route path**     | /channel/removeUser                                                                                                                                                                               |
+| **Method**         | POST                                                                                                                                                                                              |
+| **Parameter/s**    | `userId: number, groupID: number, channelID: number`                                                                                                                                              |
+| **Return value/s** | N/A                                                                                                                                                                                               |
+| **Description**    | Receives a `userId`, `groupId` and `channelID` and finds the index of the permissions json that matches `userId` and `channelId` and splices that object from `channelIds` and writes it to file. |
 
 ## Angular Architecture
 ### Components
