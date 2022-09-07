@@ -9,7 +9,17 @@ module.exports = function(app) {
             if (err) throw err;
             let userInfo = JSON.parse(data);
             userToDel = userInfo.findIndex(user => (user.userid == uID));
-            console.log(`user with ID ${uID}:`, userToDel);
+            // console.log(`user with ID ${uID}:`, userToDel);
+            if (userToDel == -1) {
+                console.log("user does not exist");
+            } else {
+                userInfo.splice(userToDel, 1);
+                fs.writeFile('./data/userInfo.json', userInfo, 'utf8', function(err){
+                    if (err) throw err;
+                });
+                // delete user from user.json (login data)
+                
+            }
         });
     });
 }
