@@ -20,9 +20,14 @@ export class ChatComponent implements OnInit {
 
   getUsers() {
     this.uAdminServ.getAllUsers().subscribe((data: any) => {
-      this.users =data;
-      console.log("this.users:", this.users);
+      data.toString();
+      this.users = data;
+      // console.log("this.users:", this.users);
     });
+  }
+
+  deleteClicked(userId: number) {
+    console.log(userId);
   }
 
 }
