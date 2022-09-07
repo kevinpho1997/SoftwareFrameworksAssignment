@@ -48,7 +48,7 @@ module.exports = function(app) {
                 // for handling if the user exists or not
                 // uArray["exists"] = false;
                 let users = uArray[i];
-                users["valid"] = true;
+                // users["valid"] = true;
                 res.send(users);
             } else {
                 // res.send(uArray);

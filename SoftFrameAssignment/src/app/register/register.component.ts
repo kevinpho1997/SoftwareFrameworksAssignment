@@ -33,12 +33,16 @@ export class RegisterComponent implements OnInit {
       this.username, this.email, this.id, this.birthdate, this.role)
         .subscribe(
           (data: any) => {
-            if (data.valid == true){
-              console.log(data);
-            } else {
-              this.errormsg = "A user with this username already exists"
+            console.log("registerClicked", data);
+            if (data) {
+              if (data.valid == false) {
+                this.errormsg = "A user with this username already exists"
+              } else {
+                console.log(data);
+              }
             }
-            // console.log(data);
+           
+            console.log(data);
             // console.log("data exists", data.exists);
             // if (data.exists){
 

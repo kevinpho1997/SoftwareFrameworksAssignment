@@ -6,7 +6,7 @@ const path = require('path');
 const io = require('socket.io')(http, {
     cors: {
         origin: 'http://localhost:4200',
-        methods: ['GET', 'POST']
+        methods: ['GET, POST, OPTIONS, PUT, PATCH, DELETE']
     }
 });
 const sockets = require('./socket.js');
@@ -21,5 +21,6 @@ server.listen(http, PORT);
 
 // app.post('/login', require('./routes/postLogin.js'));
 require('./routes/postLogin.js')(app, path);
-require('./routes/registerUser')(app, path);
-require('./routes/getUsers')(app, path);
+require('./routes/registerUser.js')(app, path);
+require('./routes/getUsers.js')(app, path);
+require('./routes/deleteUser.js')(app, path);

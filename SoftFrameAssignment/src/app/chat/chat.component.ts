@@ -9,9 +9,8 @@ import { UserAdminService } from '../services/user-admin.service';
 })
 export class ChatComponent implements OnInit {
   users: any[] = [];
-  constructor(private uAdminServ: UserAdminService) { 
-    
-  }
+
+  constructor(private uAdminServ: UserAdminService) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -26,8 +25,14 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  deleteClicked(userId: number) {
-    console.log(userId);
+  deleteClicked(event: any, userId: number) {
+    console.log("deleteClicked()", userId);
+    event.preventDefault();
+    this.uAdminServ.deleteUser(userId).subscribe((data: any) => {
+      console.log("user deleted");
+      // data.toString();
+      // this.users = data;
+    })
   }
 
 }
