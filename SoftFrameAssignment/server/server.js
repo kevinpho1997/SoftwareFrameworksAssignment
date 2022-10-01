@@ -9,18 +9,26 @@ const io = require('socket.io')(http, {
         methods: ['GET, POST, OPTIONS, PUT, PATCH, DELETE']
     }
 });
-const sockets = require('./socket.js');
-const server = require('./listen.js');
-const PORT = 3000;
+const MongoClient = require('mongodb').MongoClient;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
-sockets.connect(io, PORT);
-server.listen(http, PORT);
 
-// app.post('/login', require('./routes/postLogin.js'));
-require('./routes/postLogin.js')(app, path);
-require('./routes/registerUser.js')(app, path);
-require('./routes/getUsers.js')(app, path);
-require('./routes/deleteUser.js')(app, path);
+MongoClient.connect(url, {maxPoolSize:50, useNewUrlParser: true, useUnifiedTopology: true}, function(err, client){
+    if (err) {return console.log(err);}
+    const dbName = "";
+    const db = client.db(dbName);
+    const server = require('./listen.js');
+    const PORT = 3000;
+    const sockets = require('./socket.js');
+    sockets.connect(io, PORT);
+
+    require('./routes/postLogin.js')(db, path);
+    require('./routes/registerUser.js')(db, path);
+    require('./routes/getUsers.js')(db, path);
+    require('./routes/deleteUser.js')(db, path);
+    server.listen(http, PORT);
+});
+
+module.exports = app
