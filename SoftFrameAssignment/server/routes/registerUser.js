@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-module.exports = function(app) {
+module.exports = function(db, app) {
     app.post('/user/create', function(req, res){
         let userInfoObj = {
             username: req.body.username,

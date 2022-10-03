@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-module.exports = function(app) {
+module.exports = function(db, app) {
     app.post('/user/delete', function(req, res){
         // console.log(req.body);
         var uID = req.body.userId;

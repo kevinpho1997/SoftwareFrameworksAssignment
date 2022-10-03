@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
 const http = require('http').Server(app);
-const path = require('path');
+const cors = require('cors');
+// const path = require('path');
 const io = require('socket.io')(http, {
     cors: {
         origin: 'http://localhost:4200',
@@ -25,12 +25,12 @@ MongoClient.connect(url, {maxPoolSize:50, useNewUrlParser: true, useUnifiedTopol
     const sockets = require('./socket.js');
     sockets.connect(io, PORT);
 
-    require('./routes/postLogin.js')(db, path);
-    require('./routes/registerUser.js')(db, path);
-    require('./routes/getUsers.js')(db, path);
-    require('./routes/deleteUser.js')(db, path);
+    require('./routes/postLogin.js')(db, app);
+    require('./routes/registerUser.js')(db, app);
+    require('./routes/getUsers.js')(db, app);
+    require('./routes/deleteUser.js')(db, app);
     require('./routes/validateID')(db, app);
-    
+
     server.listen(http, PORT);
 });
 
