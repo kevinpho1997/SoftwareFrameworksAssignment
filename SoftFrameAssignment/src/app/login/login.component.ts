@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.authservice.loginEvent(this.username, this.password).subscribe(
       (data: any) => {
         // if (data.valid)
-        console.log(data);
+        // console.log(data);
         if (data[0].username && data[0].userid) {
           // console.log("LOGIN IS VALID");
           localStorage.setItem('username', data.username);

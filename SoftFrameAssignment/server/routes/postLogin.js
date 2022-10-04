@@ -23,7 +23,7 @@ module.exports = function(db, app) {
                 collection.find({'username': uname}).toArray((err, userData)=>{
                     // console.log("userData", userData);
                     userData['valid'] = true;
-                    console.log("userData", userData);
+                    // console.log("userData", userData);
                     res.send(userData);
                 });
 
