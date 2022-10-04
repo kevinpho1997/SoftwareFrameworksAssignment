@@ -22,7 +22,7 @@ export class ChatComponent implements OnInit {
     this.uAdminServ.getAllUsers().subscribe((data: any) => {
       data.toString();
       this.users = data;
-      // console.log("this.users:", this.users);
+      console.log("this.users:", this.users);
     });
   }
 

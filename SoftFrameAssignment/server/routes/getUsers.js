@@ -2,7 +2,7 @@ var fs = require('fs');
 
 module.exports = function(db, app) {
     app.get('/users', function(req, res) {
-        const collection = db.collection('users');
+        const collection = db.collection('userInfo');
         collection.find({}).toArray((err, data)=>{
             res.send(data);
         });
