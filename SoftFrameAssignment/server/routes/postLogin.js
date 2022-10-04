@@ -12,6 +12,7 @@ module.exports = function(db, app) {
         // console.log("ln 8", pword);
         const collection = db.collection('users');
         collection.find({'username': uname, 'password': pword}).count((err, count) => {
+            if (err) throw err;
             if (count = 0) {
                 res.send({
                     "valid": false
