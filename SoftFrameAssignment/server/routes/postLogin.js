@@ -18,7 +18,14 @@ module.exports = function(db, app) {
                 });
             } else {
                 // console.log("match has been found");
-                
+                const collection = db.collection('userInfo');
+                collection.find({'username': uname}).toArray((err, userData)=>{
+                    // console.log("userData", userData);
+                    userData['valid'] = true;
+                    console.log("userData", userData);
+                    res.send(userData);
+                });
+
             }
         })
 
