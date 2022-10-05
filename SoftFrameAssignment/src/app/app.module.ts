@@ -10,6 +10,7 @@ import { ChannelComponent } from './channel/channel.component';
 import { ChatComponent } from './chat/chat.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
+import { SocketService } from './services/socket.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
