@@ -1,1 +1,18 @@
-<p>channel works!</p>
+<div class="container padding-top">
+    <form>
+        <div class="form-group">
+            <label for="messagecontent" class="form-row">Type here: </label>
+            <input type="text" [(ngModel)]="messageContent" name="messageContent" id="messageContent" class="messageContent" />
+        </div>
+        <div class="form-group">
+            <button (click)="chat()" class="btn btn-primary">Send</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="padding-top">
+        <h2>Messages</h2>
+        <li *ngFor="let message of messages">{{message}}</li>       
+    </div>
+</div>
