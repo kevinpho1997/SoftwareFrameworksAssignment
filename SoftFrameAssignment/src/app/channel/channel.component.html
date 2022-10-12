@@ -1,18 +1,27 @@
-<div class="container padding-top">
-    <form>
-        <div class="form-group">
-            <label for="messagecontent" class="form-row">Type here: </label>
-            <input type="text" [(ngModel)]="messageContent" name="messageContent" id="messageContent" class="messageContent" />
-        </div>
-        <div class="form-group">
-            <button (click)="chat()" class="btn btn-primary">Send</button>
-        </div>
-    </form>
-</div>
-
+<!-- messages -->
 <div class="container">
     <div class="padding-top">
         <h2>Messages</h2>
-        <li *ngFor="let message of messages">{{message}}</li>       
+        <div *ngFor="let message of messages">
+            {{message}}
+        </div>       
     </div>
+</div>
+
+<!-- message window -->
+
+<!-- message input -->
+<div class="container padding-top">
+    <form>
+        <div class="input-group">
+            <div class="form-group">
+                <label for="messagecontent" class="form-row input-group-prepend margin">Type here: </label>
+                <input type="text" [(ngModel)]="messageContent" name="messageContent" id="messageContent" class="messageContent margin" />
+            </div>
+            <div class="form-group margin">
+                <button (click)="chat()" class="btn btn-primary ">Send</button>
+            </div>
+        </div>
+        
+    </form>
 </div>
