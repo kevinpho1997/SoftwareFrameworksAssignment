@@ -20,7 +20,6 @@ describe('Server integration test', function() {
     describe('/users', () => {
         it('it should GET all users', (done) => {
             chai.request(app).get('/users')
-                //.get('./routes/getProdList')
                 .end((err, res) => {
                     // console.log("RESPONSE", res.body);
                     // should.exist(res.body);
@@ -31,17 +30,17 @@ describe('Server integration test', function() {
         });
     });
     // test register user
-    // describe('/user/create', () => {                                            
-    //     it('it should insert a doc (user)', (done) => {
-    //         chai.request(app)
-    //             .post('/user/create').type('form').send({ 'username': "newUsername", "userid": 30, 'email': "email@email.com", 'description': 'My description', "birthdate": "2021-01-01", "userage":100, "role":"super"})
-    //             .end((err, res) => {
-    //                 // test 1
-    //                 res.should.have.status(200);
-    //                 //  test 2
-    //                 res.body.should.have.property('valid').to.not.be.false;
-    //                 done();
-    //             });
-    //     });
-    // });
+    describe('/user/create', () => {                                            
+        it('it should insert a doc (user)', (done) => {
+            chai.request(app)
+                .post('/user/create').type('form').send({ 'username': "newUsername", "userid": 30, 'email': "email@email.com", 'description': 'My description', "birthdate": "2021-01-01", "userage":100, "role":"super"})
+                .end((err, res) => {
+                    // test 1
+                    res.should.have.status(200);
+                    //  test 2
+                    res.body.should.be.a('array');
+                    done();
+                });
+        });
+    });
 });
