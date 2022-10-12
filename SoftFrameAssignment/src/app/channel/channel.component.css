@@ -1,3 +1,10 @@
 .margin {
     margin: 15px;
 }
+
+.chat-window {
+    width: 700px;
+    /* overflow: hidden; */
+    height: 500px;
+    border: 1px solid #ccc;
+}
