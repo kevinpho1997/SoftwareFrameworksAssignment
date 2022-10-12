@@ -42,5 +42,16 @@ describe('Server integration test', function() {
                     done();
                 });
         });
+        it('it should return valid: false', (done) => {
+            chai.request(app)
+                .post('/user/create').type('form').send({ 'username': "newUsername", "userid": 30, 'email': "email@email.com", 'description': 'My description', "birthdate": "2021-01-01", "userage":100, "role":"super"})
+                .end((err, res) => {
+                    // test 1
+                    res.should.have.status(200);
+                    //  test 2
+                    res.body.should.have.property('valid').to.be.false;
+                    done();
+                });
+        });
     });
 });
