@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // login user with form data and set localStorage
   public loginClicked(event: any) {
     event.preventDefault();
     // console.log(this.username);

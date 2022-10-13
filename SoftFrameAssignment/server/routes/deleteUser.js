@@ -10,8 +10,9 @@ module.exports = function(db, app) {
         const collection = db.collection('userInfo');
         collection.find({'userid': uID}).toArray((err, data) => {
             if (err) throw err;
-            console.log(data);
-            console.log(data[0].username);
+            // console.log(data);
+            // console.log(data[0].username);
+            // find user to delete
             let userToDel = data[0].username;
             const collection = db.collection('users');
             // delete user info
@@ -20,6 +21,7 @@ module.exports = function(db, app) {
                 const collection = db.collection('userInfo');
                 collection.deleteOne({"userid": uID}, (err, docs) => {
                     if (err) throw err;
+                    // convert data to array and send
                     collection.find({}).toArray((err, data) => {
                         if (err) throw err;
                         res.send(data);

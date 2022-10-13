@@ -12,17 +12,20 @@ export class SocketService {
     this.socket = io(SERVER_URL);
   }
 
+  // 
   initSocket() {
     this.socket = io(SERVER_URL);
     console.log("initSocket()");
     return ()=>{this.socket.disconnect();}
   }
 
+  // emits a string parameter to the socket
   send(message: string) {
     console.log("message:", message);
     this.socket.emit('message', message);
   }
 
+  // gets message on observable change
   getMessage() {
     return new Observable(observer => {
       this.socket.on('message', (data: string) => {observer.next(data);

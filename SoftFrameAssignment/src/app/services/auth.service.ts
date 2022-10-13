@@ -38,10 +38,4 @@ export class AuthService {
     alert("You have been logged out");
     this.router.navigateByUrl('/login');
   }
-
-  // login() {
-  //   this.isLoggedIn = true;
-  // }
-
-
 }

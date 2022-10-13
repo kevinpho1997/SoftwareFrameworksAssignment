@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // on click, register user with the form data
   registerClicked(event: any) {
     event.preventDefault();
     this.uAdminServ.registerUser(

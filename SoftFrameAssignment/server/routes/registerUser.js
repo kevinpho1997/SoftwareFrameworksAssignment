@@ -30,7 +30,7 @@ module.exports = function(db, app) {
         collection.find({'username': userInfoObj.username}).count((err, idCount) => {
             // console.log("idCount", idCount);
             if (idCount == 0) {
-                // add user
+                // add user if there is no instance of the user in the collection
                 collection.insertOne(userInfoObj, (err, dbRes) => {
                     if (err) throw err;
                     // console.log("USER INFO INSERTED",userInfoObj);

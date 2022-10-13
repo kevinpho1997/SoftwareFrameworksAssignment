@@ -13,11 +13,13 @@ module.exports = function(db, app) {
         const collection = db.collection('users');
         collection.find({'username': uname, 'password': pword}).count((err, count) => {
             if (err) throw err;
+            // if there is not instance of the user send back object for error handling
             if (count = 0) {
                 res.send({
                     "valid": false
                 });
             } else {
+                // if there is a user matching credentials
                 // console.log("match has been found");
                 const collection = db.collection('userInfo');
                 collection.find({'username': uname}).toArray((err, userData)=>{
