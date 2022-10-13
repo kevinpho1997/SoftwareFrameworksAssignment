@@ -23,6 +23,7 @@ export class AuthService {
     // this.pword = "";
   }
 
+  // logins a user
   loginEvent(uname: string, pword: string) {
     console.log("loginEvent()", uname);
     this.isLoggedIn = true;
@@ -30,6 +31,7 @@ export class AuthService {
     return this.http.post(this.server + '/login', user, httpOptions);
   }
 
+  // logouts the user
   logoutEvent() {
     this.isLoggedIn = false;
     localStorage.clear();

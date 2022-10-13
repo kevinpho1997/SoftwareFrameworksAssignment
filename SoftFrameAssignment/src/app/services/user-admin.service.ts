@@ -23,16 +23,19 @@ export class UserAdminService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  // register user with these parameters
   registerUser(username: string, email: string, id: number, birthdate: string, role: string) {
     // console.log("registerUser()");
     let user: User = {username, email, id, birthdate, role};
     return this.http.post<User>(this.server + '/user/create', user, httpOptions);
   }
 
+  // calls the /users route
   getAllUsers() {
     return this.http.get(this.server + '/users', httpOptions);
   }
 
+  // calls the delete user route
   deleteUser(userId: number) {
     console.log("deleteUser()", userId);
     let user = {userId: userId}

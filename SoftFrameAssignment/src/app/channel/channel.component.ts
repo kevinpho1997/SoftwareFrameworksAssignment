@@ -18,15 +18,16 @@ export class ChannelComponent implements OnInit {
     this.initIoConnection();
   }
 
+  // starts a socket connection
   private initIoConnection() {
     this.socketServ.initSocket();
     this.ioConnection = this.socketServ.getMessage()
       .subscribe((message: any) => {
         this.messages.push(message);
-
       });
   }
 
+  // sends chat message
   chat() {
     if(this.messageContent) {
       this.socketServ.send(this.messageContent);

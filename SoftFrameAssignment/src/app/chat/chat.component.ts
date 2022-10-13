@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
     // console.log(this.users);
   }
 
+  // get all users from database
   getUsers() {
     this.uAdminServ.getAllUsers().subscribe((data: any) => {
       data.toString();
@@ -26,6 +27,7 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  // delete the particular user
   deleteClicked(event: any, userId: number) {
     console.log("deleteClicked()", userId);
     event.preventDefault();
